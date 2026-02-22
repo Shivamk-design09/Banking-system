@@ -8,6 +8,6 @@ const app = require('./src/app')
 
 connectToDB()
 
-app.listen(5000,()=>{
-    console.log('server is runnign on port 5000')
+app.listen(3000,()=>{
+    console.log('server is runnign on port 3000')
 })    
