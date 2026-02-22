@@ -39,4 +39,46 @@ const sendEmail = async (to, subject, text, html) => {
   }
 };
 
-module.exports = sendEmail;
+// async function sendRegistrationEmail(userEmail,name){
+//     const subject = 'Welcome  to Backend Ledger !';
+//     const text = `hello ${name} Thank you for registering the Backend Ledger
+//     We are exited to have you onboard ,\n Best regards,\n The Backend Ledger`;
+//     const html = `<p>Hello ${name}, </p> <p> Thank you for registering at backend ledger
+//      We are excited to have you on board</p>`
+
+//      await sendEmail(userEmail,subject,text,html)
+// }
+
+async function sendRegistrationEmail(userEmail, name) {
+    try {
+        const subject = "Welcome to Backend Ledger!";
+
+        const text = `Hello ${name},
+
+Thank you for registering at Backend Ledger.
+We are excited to have you onboard.
+
+Best regards,
+Backend Ledger Team`;
+
+        const html = `
+            <h2>Welcome to Backend Ledger, ${name}!</h2>
+            <p>Thank you for registering with us.</p>
+            <p>We are excited to have you onboard.</p>
+            <br>
+            <p>Best regards,<br>Backend Ledger Team</p>
+        `;
+
+        await sendEmail(userEmail, subject, text, html);
+
+        console.log("Registration email sent successfully");
+    } catch (error) {
+        console.error("Error sending registration email:", error);
+    }
+}
+
+
+
+module.exports = {
+    sendRegistrationEmail
+}
