@@ -2,19 +2,29 @@
 // and app is used in  adding middleware
 
 const express = require("express")
-const authRouter = require('./routes/auth.route')
 const cookieParser = require("cookie-parser")
-
 const app = express()
-
 app.use(express.json())
-
 app.use(cookieParser())
-app.use("/api/auth",authRouter)
+
+
+/**
+ * -  Routes required
+ */
+const authRouter = require('./routes/auth.route')
+const accountRouter = require('./routes/account.route')
+
+
+/**
+ *  - Use Routes
+ */
+app.use("/api/auth", authRouter)
+app.use("/api/accounts", accountRouter)
 
 // server instant is save in app
 // server will start in server.js
 
 //export server
 module.exports = app
+
 

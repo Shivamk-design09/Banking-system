@@ -12,3 +12,9 @@
 
 
 // creating Register and login system 
+
+
+// User Account Model done
+
+// Creating User Medlen EndPoint 
+// Creating User API to fetch the user account
