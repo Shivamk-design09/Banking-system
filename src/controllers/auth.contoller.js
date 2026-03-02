@@ -17,6 +17,8 @@ async function userRegisterController(req, res) {
     const exitEmail = await userModel.findOne({
         email: email
     })
+
+    // if user is exist return an 402 error
     if (exitEmail) {
         return res.status(422).json({
             message: "User already exist",
@@ -24,14 +26,16 @@ async function userRegisterController(req, res) {
         })
     }
 
+    // create a new user
     const user = await userModel.create({
         email, name, password
     })
 
+    // created the token and send it in the res.cookie
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: "3d"
     })
-
+    // send the token in the cookie
     res.cookie("token", token)
 
     res.status(201).json({
@@ -61,6 +65,7 @@ async function userLoginController(req, res) {
 
     const user = await  userModel.findOne({ email }).select("+password")
 
+    // if use is not found return an error
     if (!user) {
         return res.status(401).json({
             message: "Email or password is Invalid",
@@ -68,8 +73,10 @@ async function userLoginController(req, res) {
         })
     }
 
+    // compare the password
     const isValidPassword = await user.comparePassword(password)
 
+    
     if (!isValidPassword) {
         return res.status(401).json({
             message: "Email or password is Invalid",
@@ -77,10 +84,10 @@ async function userLoginController(req, res) {
         })
     }
 
-    // generate token 
-
+    // generate token ]
     const token = jwt.sign({userId:user._id},process.env.JWT_SECRET,{expiresIn:"3d"})
 
+    // token generate and sent in the cookies 
     res.cookie("token",token)
 
     res.status(200).json({

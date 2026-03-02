@@ -8,11 +8,13 @@ const accountSchema = new mongoose.Schema({
         ref:"user",
         required:[true,"Account must be associated with the user"],
         index:true
-    },
+    }, 
     status:{
+        type:String,
         enum:{
-            value:["ACTIVE","FREEZE","CLOSED"],
-            message:"Status can be eather ACTIVE FREEZE CLOSED"
+            values:["ACTIVE","FREEZE","CLOSED"],
+            message:"Status can be eather ACTIVE FREEZE CLOSED",
+            default:"ACTIVE"
         }
     },
     currency:{

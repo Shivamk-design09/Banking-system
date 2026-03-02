@@ -2,8 +2,8 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
+    email: {          
+        type: String, 
         require: [true, "Email is required for creating acoung"],
         trim: true,
         lowerCase: true,
