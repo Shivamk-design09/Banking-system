@@ -91,11 +91,6 @@ async function userLoginController(req, res) {
         },
         token
     })
-
-
-
-
-
 }
 
 module.exports = {
