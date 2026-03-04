@@ -14,8 +14,8 @@ const accountSchema = new mongoose.Schema({
         enum:{
             values:["ACTIVE","FREEZE","CLOSED"],
             message:"Status can be eather ACTIVE FREEZE CLOSED",
-            default:"ACTIVE"
-        }
+        },
+        default:"ACTIVE"
     },
     currency:{
         type:String,
@@ -32,6 +32,6 @@ accountSchema.index({user:1,status:1})
 
 
 // collection name
-const accountModel = mongoose.model("Account",accountSchema)
+const accountModel = mongoose.model("account",accountSchema)
 
 module.exports = accountModel
